@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'BLKNetwork_Example' do
+  pod 'BLKNetwork', :path => '../'
+
+  target 'BLKNetwork_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
