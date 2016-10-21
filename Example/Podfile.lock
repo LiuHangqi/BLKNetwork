@@ -1,0 +1,16 @@
+PODS:
+  - BLKNetwork (0.1.0)
+
+DEPENDENCIES:
+  - BLKNetwork (from `../`)
+
+EXTERNAL SOURCES:
+  BLKNetwork:
+    :path: ../
+
+SPEC CHECKSUMS:
+  BLKNetwork: 3db5426d5bce998694667af189e7dc7c8ef6df3e
+
+PODFILE CHECKSUM: 21b132e1e2a6b75b393b4e491eb33fe94fbca540
+
+COCOAPODS: 1.0.0

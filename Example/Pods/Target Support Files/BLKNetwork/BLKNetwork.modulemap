@@ -1,0 +1,6 @@
+framework module BLKNetwork {
+  umbrella header "BLKNetwork-umbrella.h"
+
+  export *
+  module * { export * }
+}

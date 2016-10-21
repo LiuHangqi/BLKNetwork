@@ -1,0 +1,76 @@
+//
+//  BLKRequestQueueConfig.h
+//  BLKNetworkDemo
+//
+//  Created by HangqiLiu on 2016/10/18.
+//  Copyright © 2016年 bianlike. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+@class BLKRequest;
+
+@protocol BLKUrlFilterProtocol <NSObject>
+
+
+/**
+ 请求之前重新配置URL
+
+ @param originUrl 原URL
+ @param request   request
+
+ @return 返回配置后的URL
+ */
+- (NSString *)filterUrl:(NSString *)originUrl withRequest:(BLKRequest *)request;
+
+@end
+
+@protocol BLKParameterFilterProtocol <NSObject>
+
+
+/**
+ 请求之前重新配置parameters
+
+ @param originParameter 原parameters
+ @param request         request
+
+ @return 返回配置后的parameters
+ */
+- (NSDictionary *)filterParameter:(NSDictionary *)originParameter withRequest:(BLKRequest *)request;
+
+@end
+
+@protocol BLKRequestSuccessFilterProtocol <NSObject>
+
+
+/**
+ 请求服务器成功后，对request进行重新配置
+
+ @param request rquest
+
+ @return 请求是否成功
+ */
+- (BOOL)filterSuccessWithRequest:(BLKRequest *)request;
+
+@end
+
+@interface BLKRequestQueueConfig : NSObject
+
+
+/**
+ 重新配置url
+ */
+@property (nonatomic, strong) id <BLKUrlFilterProtocol> urlFilter;
+
+
+/**
+ 重新配置parameter
+ */
+@property (nonatomic, strong) id <BLKParameterFilterProtocol> parameterFilter;
+
+
+/**
+ 成功后重新配置request
+ */
+@property (nonatomic, strong) id <BLKRequestSuccessFilterProtocol> requestSuccessFilter;
+
+@end

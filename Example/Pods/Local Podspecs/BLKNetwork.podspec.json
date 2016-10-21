@@ -1,0 +1,22 @@
+{
+  "name": "BLKNetwork",
+  "version": "0.1.0",
+  "summary": "A short description of BLKNetwork.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/<GITHUB_USERNAME>/BLKNetwork",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "LiuHangqi": "liuhangqi@live.com"
+  },
+  "source": {
+    "git": "https://github.com/<GITHUB_USERNAME>/BLKNetwork.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BLKNetwork/Classes/**/*"
+}
