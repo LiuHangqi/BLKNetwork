@@ -1,9 +1,9 @@
 {
   "name": "BLKNetwork",
   "version": "0.1.0",
-  "summary": "A short description of BLKNetwork.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/BLKNetwork",
+  "summary": "Network framework for blkee",
+  "description": "Network framework for blkee.",
+  "homepage": "https://github.com/LiuHangqi/BLKNetwork",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
@@ -12,11 +12,16 @@
     "LiuHangqi": "liuhangqi@live.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/BLKNetwork.git",
+    "git": "https://github.com/LiuHangqi/BLKNetwork.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "BLKNetwork/Classes/**/*"
+  "source_files": "BLKNetwork/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+
+    ]
+  }
 }

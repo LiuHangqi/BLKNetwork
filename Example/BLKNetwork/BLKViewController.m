@@ -7,6 +7,7 @@
 //
 
 #import "BLKViewController.h"
+#import "LDRequestManager.h"
 
 @interface BLKViewController ()
 
@@ -18,6 +19,15 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    [[LDRequestManager sharedInstance]loginWithUsername:@"123456" password:@"23456" success:^(__kindof BLKRequest *request) {
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"alert" message:request.responseObject[@"token"] preferredStyle:UIAlertControllerStyleAlert];
+        [self presentViewController:alert animated:YES completion:nil];
+    } failure:^(__kindof BLKRequest *request) {
+        
+        NSLog(@"error:%@",request.responseError);
+    }];
 }
 
 - (void)didReceiveMemoryWarning
