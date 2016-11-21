@@ -9,11 +9,12 @@
 #import "LDLoginApi.h"
 #import "NSString+MD5.h"
 
-@implementation LDLoginApi {
-    
-    NSString *_username;
-    NSString *_password;
-}
+@implementation LDLoginApi
+//{
+//    
+//    NSString *_username;
+//    NSString *_password;
+//}
 
 - (NSString *)baseUrl {
     
@@ -33,8 +34,8 @@
 - (NSDictionary *)parameters {
     
     return @{
-             @"account":_username,
-             @"passwd":[_password MD5String]
+             @"account":self.username,
+             @"passwd":[self.password MD5String]
              };
 }
 
@@ -43,8 +44,8 @@
     
     if (self = [super init]) {
         
-        _username = username;
-        _password = password;
+        self.username = username;
+        self.password = password;
     }
     return self;
 }

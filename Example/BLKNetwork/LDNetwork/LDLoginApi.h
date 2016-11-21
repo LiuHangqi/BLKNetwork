@@ -10,6 +10,9 @@
 
 @interface LDLoginApi : BLKRequest
 
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *password;
+
 - (instancetype)initWithUsername:(NSString *)username
                         password:(NSString *)password;
 

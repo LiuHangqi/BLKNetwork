@@ -17,6 +17,8 @@
 @property (nonatomic, strong) BLKRequestQueue *queue;
 @property (nonatomic, strong) BLKRequestQueueConfig *config;
 
+@property (nonatomic, strong) LDLoginApi *login;
+
 @end
 
 @implementation LDRequestManager
@@ -34,8 +36,10 @@
 
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(BLKRequestCompletionBlock)success failure:(BLKRequestCompletionBlock)failure {
     
-    LDLoginApi *login = [[LDLoginApi alloc]initWithUsername:username password:password];
-    [self.queue startRequest:login success:success failure:failure];
+//    LDLoginApi *login = [[LDLoginApi alloc]initWithUsername:username password:password];
+    self.login.username = username;
+    self.login.password = password;
+    [self.queue startRequest:self.login success:success failure:failure];
 }
 
 - (BLKRequestQueue *)queue {
@@ -58,6 +62,16 @@
     }
     
     return _config;
+}
+
+- (LDLoginApi *)login {
+    
+    if (!_login) {
+        
+        _login = [[LDLoginApi alloc]init];
+    }
+    
+    return _login;
 }
 
 @end

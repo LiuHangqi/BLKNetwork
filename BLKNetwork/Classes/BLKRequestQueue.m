@@ -43,6 +43,7 @@
 
 - (void)startRequest:(BLKRequest *)request success:(BLKRequestCompletionBlock)success failure:(BLKRequestCompletionBlock)failure {
     
+    [self resetRequest:request];
     NSError *error = nil;
     request.requestTask = [self sessionTaskForRequest:request error:&error];
     if (error) {
@@ -73,6 +74,7 @@
     
     [request.requestTask cancel];
     [self removeRequest:request];
+    request = nil;
 }
 
 - (void)cancelAllRequest {
@@ -177,6 +179,19 @@
     }
 }
 
+- (void)resetRequest:(BLKRequest *)request {
+    
+    request.requestTask = nil;
+    request.originalRequest = nil;
+    request.currentRequest = nil;
+    request.response = nil;
+    request.responseData = nil;
+    request.responseObject = nil;
+    request.responseError = nil;
+    request.responseStatusCode = 0;
+}
+
+
 #pragma mark -
 
 - (NSURLSessionTask *)sessionTaskForRequest:(BLKRequest *)request error:(NSError **)error {
@@ -184,21 +199,22 @@
     BLKRequestMethod method = [request requestMethod];
     NSString *url = [self urlForRequest:request];
     NSDictionary *parameters = [self parametersForRequest:request];
+    NSInteger timeOut = [request requestTimeoutInterval];
     BLKConstructingBlock constructingBlock = [request constructionBlock];
     AFHTTPRequestSerializer *requestSerializer = [self requestSerializerForRequest:request];
     [self setupHttpHeaders:[request httpHeaders]];
     switch (method) {
         case BLKRequestMethodGET:
-            return [self dataTaskWithHttpMethod:@"GET" requestSerializer:requestSerializer URLString:url parameters:parameters error:error];
+            return [self dataTaskWithHttpMethod:@"GET" requestSerializer:requestSerializer URLString:url parameters:parameters timeOut:timeOut error:error];
             break;
         case BLKRequestMethodPOST:
-            return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:requestSerializer URLString:url parameters:parameters constructingBodyWithBlock:constructingBlock error:error];
+            return [self dataTaskWithHTTPMethod:@"POST" requestSerializer:requestSerializer URLString:url parameters:parameters timeOut:timeOut constructingBodyWithBlock:constructingBlock error:error];
             break;
         case BLKRequestMethodPUT:
-            return [self dataTaskWithHttpMethod:@"PUT" requestSerializer:requestSerializer URLString:url parameters:parameters error:error];
+            return [self dataTaskWithHttpMethod:@"PUT" requestSerializer:requestSerializer URLString:url parameters:parameters timeOut:timeOut error:error];
             break;
         case BLKRequestMethodDELETE:
-            return [self dataTaskWithHttpMethod:@"DELETE" requestSerializer:requestSerializer URLString:url parameters:parameters error:error];
+            return [self dataTaskWithHttpMethod:@"DELETE" requestSerializer:requestSerializer URLString:url parameters:parameters timeOut:timeOut error:error];
             break;
     }
 }
@@ -207,15 +223,17 @@
                                requestSerializer:(AFHTTPRequestSerializer *)requestSerializer
                                        URLString:(NSString *)URLString
                                       parameters:(NSDictionary *)parameters
+                                         timeOut:(NSInteger)timeOut
                                            error:(NSError **)error {
     
-    return [self dataTaskWithHTTPMethod:method requestSerializer:requestSerializer URLString:URLString parameters:parameters constructingBodyWithBlock:nil error:error];
+    return [self dataTaskWithHTTPMethod:method requestSerializer:requestSerializer URLString:URLString parameters:parameters timeOut:timeOut constructingBodyWithBlock:nil error:error];
 }
 
 - (NSURLSessionDataTask *)dataTaskWithHTTPMethod:(NSString *)method
                                requestSerializer:(AFHTTPRequestSerializer *)requestSerializer
                                        URLString:(NSString *)URLString
                                       parameters:(NSDictionary *)parameters
+                                         timeOut:(NSInteger)timeOut
                        constructingBodyWithBlock:(nullable void (^)(id <AFMultipartFormData> formData))block
                                            error:(NSError **)error {
     NSMutableURLRequest *request = nil;
@@ -226,6 +244,7 @@
         request = [requestSerializer requestWithMethod:method URLString:URLString parameters:parameters error:error];
     }
     
+    request.timeoutInterval = timeOut;
     __block NSURLSessionDataTask *dataTask = nil;
     dataTask = [self.sessionManager dataTaskWithRequest:request
                                       completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {

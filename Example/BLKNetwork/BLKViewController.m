@@ -20,6 +20,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    
+}
+
+- (IBAction)click:(id)sender {
+    
     [[LDRequestManager sharedInstance]loginWithUsername:@"123456" password:@"23456" success:^(__kindof BLKRequest *request) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"alert" message:request.responseObject[@"token"] preferredStyle:UIAlertControllerStyleAlert];
