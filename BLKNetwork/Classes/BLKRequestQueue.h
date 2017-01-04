@@ -15,9 +15,7 @@
 
 - (instancetype)initWithConfig:(BLKRequestQueueConfig *)config;
 
-- (void)startRequest:(BLKRequest *)request
-             success:(BLKRequestCompletionBlock)success
-             failure:(BLKRequestCompletionBlock)failure;
+- (void)startRequest:(BLKRequest *)request completion:(BLKRequestCompletionBlock)completion;
 
 - (void)cancelRequest:(BLKRequest *)request;
 

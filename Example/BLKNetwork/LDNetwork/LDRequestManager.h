@@ -13,6 +13,6 @@
 
 + (instancetype)sharedInstance;
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(BLKRequestCompletionBlock)success failure:(BLKRequestCompletionBlock)failure;
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(BLKRequestCompletionBlock)completion;
 
 @end

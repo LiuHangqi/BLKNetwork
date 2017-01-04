@@ -34,12 +34,12 @@
     return shared;
 }
 
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password success:(BLKRequestCompletionBlock)success failure:(BLKRequestCompletionBlock)failure {
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password completion:(BLKRequestCompletionBlock)completion {
     
 //    LDLoginApi *login = [[LDLoginApi alloc]initWithUsername:username password:password];
     self.login.username = username;
     self.login.password = password;
-    [self.queue startRequest:self.login success:success failure:failure];
+    [self.queue startRequest:self.login completion:completion];
 }
 
 - (BLKRequestQueue *)queue {

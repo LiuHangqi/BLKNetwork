@@ -9,13 +9,13 @@
 #import "BLKRequestQueue.h"
 #import "AFNetworking.h"
 
+
 @interface BLKRequestQueue ()
 
 @property (nonatomic, strong) NSMutableDictionary *requestQueue;
 @property (nonatomic, strong) AFHTTPSessionManager *sessionManager;
 @property (nonatomic, strong) AFJSONResponseSerializer *jsonResponseSerializer;
-@property (nonatomic, strong) NSMutableDictionary *requestSuccessBlockRecorders;
-@property (nonatomic, strong) NSMutableDictionary *requestFailureBlockRecorders;
+@property (nonatomic, strong) NSMutableDictionary *requestCompletionRecorders;
 
 @end
 
@@ -41,8 +41,8 @@
     return self;
 }
 
-- (void)startRequest:(BLKRequest *)request success:(BLKRequestCompletionBlock)success failure:(BLKRequestCompletionBlock)failure {
-    
+- (void)startRequest:(BLKRequest *)request completion:(BLKRequestCompletionBlock)completion {
+  
     [self resetRequest:request];
     NSError *error = nil;
     request.requestTask = [self sessionTaskForRequest:request error:&error];
@@ -66,7 +66,7 @@
             break;
     }
     
-    [self addRequest:request successBlock:success failureBlock:failure];
+    [self addRequest:request completion:completion];
     [request.requestTask resume];
 }
 
@@ -85,18 +85,16 @@
     }
 }
 
-- (void)addRequest:(BLKRequest *)request successBlock:(BLKRequestCompletionBlock)complete failureBlock:(BLKRequestCompletionBlock)faild {
+- (void)addRequest:(BLKRequest *)request completion:(BLKRequestCompletionBlock)completion {
     
     [self addRequestToQueue:request];
-    [self addSuccessBlockToRecorders:complete forRequest:request];
-    [self addFailureBlockToRecorders:faild forRequest:request];
+    [self addCompletionBlockToRecorders:completion forRequest:request];
 }
 
 - (void)removeRequest:(BLKRequest *)request {
     
     [self removeRequestFromQueue:request];
-    [self removeSuccessBlockRecorderForRequest:request];
-    [self removeFailureBlockRecorderForRequest:request];
+    [self removeCompletionBlockRecorderForRequest:request];
 }
 
 - (void)addRequestToQueue:(BLKRequest *)request {
@@ -109,7 +107,7 @@
     @synchronized (self) {
         
         self.requestQueue[@(request.requestTask.taskIdentifier)] = request;
-        NSLog(@"Add request:%@",NSStringFromClass([request class]));
+        //NSLog(@"Add request:%@",NSStringFromClass([request class]));
     };
 }
 
@@ -118,47 +116,27 @@
     @synchronized (self) {
         
         [self.requestQueue removeObjectForKey:@(request.requestTask.taskIdentifier)];
-        NSLog(@"Request queue size = %zd",self.requestQueue.count);
+        //NSLog(@"Request queue size = %zd",self.requestQueue.count);
     };
 }
 
-- (void)addSuccessBlockToRecorders:(BLKRequestCompletionBlock)complete forRequest:(BLKRequest *)request{
+- (void)addCompletionBlockToRecorders:(BLKRequestCompletionBlock)complete forRequest:(BLKRequest *)request {
     
     if (complete) {
         
         @synchronized (self) {
             
-            self.requestSuccessBlockRecorders[@(request.requestTask.taskIdentifier)] = complete;
-        };
-    }
-    
-}
-
-- (void)removeSuccessBlockRecorderForRequest:(BLKRequest *)request {
-    
-    @synchronized (self) {
-        
-        self.requestSuccessBlockRecorders[@(request.requestTask.taskIdentifier)] = nil;
-    };
-}
-
-- (void)addFailureBlockToRecorders:(BLKRequestCompletionBlock)faild forRequest:(BLKRequest *)request {
-    
-    if (faild) {
-        
-        @synchronized (self) {
-            
-            self.requestFailureBlockRecorders[@(request.requestTask.taskIdentifier)] = faild;
+            self.requestCompletionRecorders[@(request.requestTask.taskIdentifier)] = complete;
         }
     }
 }
 
-- (void)removeFailureBlockRecorderForRequest:(BLKRequest *)request {
+- (void)removeCompletionBlockRecorderForRequest:(BLKRequest *)request {
     
     @synchronized (self) {
         
-        self.requestFailureBlockRecorders[@(request.requestTask.taskIdentifier)] = nil;
-    };
+        self.requestCompletionRecorders[@(request.requestTask.taskIdentifier)] = nil;
+    }
 }
 
 - (void)setupHttpHeaders:(NSDictionary *)httpHeaders {
@@ -304,7 +282,7 @@
         
         return;
     }
-    NSLog(@"Finish Request: %@",NSStringFromClass([request class]));
+    //NSLog(@"Finish Request: %@",NSStringFromClass([request class]));
     
     NSError *serializationError = nil;
     NSError *requestError = nil;
@@ -337,7 +315,7 @@
         
         succeed = YES;
     }
-    
+
     if (succeed) {
         
         [self requestDidSuccessWithRequest:request];
@@ -345,9 +323,8 @@
         
         [self requestDidFailWithRequest:request error:requestError];
     }
-    
+ 
     [self removeRequest:request];
-
 }
 
 - (void)requestDidSuccessWithRequest:(BLKRequest *)request {
@@ -364,11 +341,7 @@
     }
     
     [request requestCompleteFilter];
-    BLKRequestCompletionBlock success = self.requestSuccessBlockRecorders[@(request.requestTask.taskIdentifier)];
-    if (success) {
-        
-        success(request);
-    }
+    [self requestCompletion:request];
 }
 
 - (void)requestDidFailWithRequest:(BLKRequest *)request error:(NSError *)error {
@@ -378,10 +351,15 @@
         request.responseError = error;
     }
     [request requestFaildFilter];
-    BLKRequestCompletionBlock failure = self.requestFailureBlockRecorders[@(request.requestTask.taskIdentifier)];
-    if (failure) {
+    [self requestCompletion:request];
+}
+
+- (void)requestCompletion:(BLKRequest *)request {
+    
+    BLKRequestCompletionBlock completion = self.requestCompletionRecorders[@(request.requestTask.taskIdentifier)];
+    if (completion) {
         
-        failure(request);
+        completion(request);
     }
 }
 
@@ -420,23 +398,14 @@
     return _jsonResponseSerializer;
 }
 
-- (NSMutableDictionary *)requestSuccessBlockRecorders {
+- (NSMutableDictionary *)requestCompletionRecorders {
     
-    if (!_requestSuccessBlockRecorders) {
+    if (!_requestCompletionRecorders) {
         
-        _requestSuccessBlockRecorders = [[NSMutableDictionary alloc]init];
-    }
-    return _requestSuccessBlockRecorders;
-}
-
-- (NSMutableDictionary *)requestFailureBlockRecorders {
-    
-    if (!_requestFailureBlockRecorders) {
-        
-        _requestFailureBlockRecorders = [[NSMutableDictionary alloc]init];
+        _requestCompletionRecorders = [[NSMutableDictionary alloc]init];
     }
     
-    return _requestFailureBlockRecorders;
+    return _requestCompletionRecorders;
 }
 
 @end

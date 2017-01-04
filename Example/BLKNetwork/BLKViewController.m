@@ -8,6 +8,7 @@
 
 #import "BLKViewController.h"
 #import "LDRequestManager.h"
+#import "AFNetworking.h"
 
 @interface BLKViewController ()
 
@@ -19,20 +20,35 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    
+   
 }
+
 
 - (IBAction)click:(id)sender {
     
-    [[LDRequestManager sharedInstance]loginWithUsername:@"123456" password:@"23456" success:^(__kindof BLKRequest *request) {
+    [[AFHTTPSessionManager manager]GET:@"http://www.blkee.com" parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"alert" message:request.responseObject[@"token"] preferredStyle:UIAlertControllerStyleAlert];
-        [self presentViewController:alert animated:YES completion:nil];
-    } failure:^(__kindof BLKRequest *request) {
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
-        NSLog(@"error:%@",request.responseError);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
     }];
+//    [[LDRequestManager sharedInstance]loginWithUsername:@"18560123803" password:@"12345qwert" completion:^(__kindof BLKRequest *request) {
+//        
+//        if (request.responseError) {
+//            
+//            NSLog(@"%@",request.responseError);
+//            return ;
+//        }
+//        NSLog(@"%@",request.responseObject);
+//    }];
+    
+    
+    
+//    UIWebView *web = [[UIWebView alloc]initWithFrame:CGRectZero];
+//    [self.view addSubview:web];
+//    [web loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.blkee.com"]]];
+    
 }
 
 - (void)didReceiveMemoryWarning
