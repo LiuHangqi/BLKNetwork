@@ -7,8 +7,8 @@
 //
 
 #import "BLKAppDelegate.h"
-#import "AFNetworking.h"
-#import "CustomURLProtocol.h"
+
+
 
 @implementation BLKAppDelegate
 
@@ -16,7 +16,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [NSURLProtocol registerClass:[CustomURLProtocol class]];
+
     return YES;
 }
 

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		5A01CF951DB9F253002C2AEF /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CF941DB9F253002C2AEF /* NSString+MD5.m */; };
 		5A532BDB1DEC007400E3449C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A532BDA1DEC007400E3449C /* Default-568h@2x.png */; };
-		5A6E627B1E10F81F00897797 /* CustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E627A1E10F81F00897797 /* CustomURLProtocol.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -43,8 +42,6 @@
 		5A01CF931DB9F253002C2AEF /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		5A01CF941DB9F253002C2AEF /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		5A532BDA1DEC007400E3449C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		5A6E62791E10F81F00897797 /* CustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomURLProtocol.h; sourceTree = "<group>"; };
-		5A6E627A1E10F81F00897797 /* CustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomURLProtocol.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* BLKNetwork_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BLKNetwork_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -148,8 +145,6 @@
 			children = (
 				5A01CF931DB9F253002C2AEF /* NSString+MD5.h */,
 				5A01CF941DB9F253002C2AEF /* NSString+MD5.m */,
-				5A6E62791E10F81F00897797 /* CustomURLProtocol.h */,
-				5A6E627A1E10F81F00897797 /* CustomURLProtocol.m */,
 				5A01CF861DB9F231002C2AEF /* LDNetwork */,
 				6003F59C195388D20070C39A /* BLKAppDelegate.h */,
 				6003F59D195388D20070C39A /* BLKAppDelegate.m */,
@@ -419,7 +414,6 @@
 				6003F5A7195388D20070C39A /* BLKViewController.m in Sources */,
 				5A01CF951DB9F253002C2AEF /* NSString+MD5.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				5A6E627B1E10F81F00897797 /* CustomURLProtocol.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
