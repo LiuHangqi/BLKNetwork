@@ -1,14 +1,14 @@
 //
-//  BLKRequest.m
+//  BLKBaseRequest.m
 //  BLKNetworkDemo
 //
 //  Created by HangqiLiu on 2016/10/17.
 //  Copyright © 2016年 bianlike. All rights reserved.
 //
 
-#import "BLKRequest.h"
+#import "BLKBaseRequest.h"
 
-@implementation BLKRequest
+@implementation BLKBaseRequest
 
 - (NSHTTPURLResponse *)response {
     

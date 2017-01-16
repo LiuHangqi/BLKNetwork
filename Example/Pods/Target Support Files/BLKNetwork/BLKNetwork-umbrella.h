@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 
-#import "BLKRequest.h"
+#import "BLKBaseRequest.h"
 #import "BLKRequestQueue.h"
 #import "BLKRequestQueueConfig.h"
 

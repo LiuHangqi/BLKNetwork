@@ -1,5 +1,5 @@
 //
-//  BLKRequestQueueConfig.h
+//  BLKNetworkConfig.h
 //  BLKNetworkDemo
 //
 //  Created by HangqiLiu on 2016/10/18.
@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-@class BLKRequest;
+@class BLKBaseRequest;
+@class AFSecurityPolicy;
 
 @protocol BLKUrlFilterProtocol <NSObject>
 
@@ -20,7 +21,7 @@
 
  @return 返回配置后的URL
  */
-- (NSString *)filterUrl:(NSString *)originUrl withRequest:(BLKRequest *)request;
+- (NSString *)filterUrl:(NSString *)originUrl withRequest:(BLKBaseRequest *)request;
 
 @end
 
@@ -35,7 +36,7 @@
 
  @return 返回配置后的parameters
  */
-- (NSDictionary *)filterParameter:(NSDictionary *)originParameter withRequest:(BLKRequest *)request;
+- (NSDictionary *)filterParameter:(NSDictionary *)originParameter withRequest:(BLKBaseRequest *)request;
 
 @end
 
@@ -49,12 +50,32 @@
 
  @return 请求是否成功
  */
-- (BOOL)filterSuccessWithRequest:(BLKRequest *)request;
+- (BOOL)filterSuccessWithRequest:(BLKBaseRequest *)request;
 
 @end
 
-@interface BLKRequestQueueConfig : NSObject
+@protocol BLKRequestFaildFilterProtocol <NSObject>
 
+/**
+ 请求服务器失败后，对request进行重新配置
+ 
+ @param request rquest
+ 
+ @return 请求是否成功
+ */
+- (BOOL)filterFaildWithRequest:(BLKBaseRequest *)request;
+
+@end
+
+@interface BLKNetworkConfig : NSObject
+
+- (instancetype)init NS_UNAVAILABLE;
+
+- (instancetype)new NS_UNAVAILABLE;
+
++ (instancetype)sharedConfig;
+
+@property (nonatomic, strong) NSURLSessionConfiguration *sessionConfiguration;
 
 /**
  重新配置url
@@ -72,5 +93,10 @@
  成功后重新配置request
  */
 @property (nonatomic, strong) id <BLKRequestSuccessFilterProtocol> requestSuccessFilter;
+
+/**
+ 成功后重新配置request
+ */
+@property (nonatomic, strong) id <BLKRequestFaildFilterProtocol> requestFaildFilter;
 
 @end

@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5A01CF8F1DB9F231002C2AEF /* LDLoginApi.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CF881DB9F231002C2AEF /* LDLoginApi.m */; };
-		5A01CF901DB9F231002C2AEF /* LDParameterFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CF8A1DB9F231002C2AEF /* LDParameterFilter.m */; };
-		5A01CF911DB9F231002C2AEF /* LDRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CF8C1DB9F231002C2AEF /* LDRequestManager.m */; };
-		5A01CF921DB9F231002C2AEF /* LDRequestSuccessFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CF8E1DB9F231002C2AEF /* LDRequestSuccessFilter.m */; };
 		5A01CF951DB9F253002C2AEF /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A01CF941DB9F253002C2AEF /* NSString+MD5.m */; };
 		5A532BDB1DEC007400E3449C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5A532BDA1DEC007400E3449C /* Default-568h@2x.png */; };
 		5A6E627B1E10F81F00897797 /* CustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6E627A1E10F81F00897797 /* CustomURLProtocol.m */; };
@@ -44,14 +40,6 @@
 
 /* Begin PBXFileReference section */
 		0DA93AF664B617CDCDACFEF3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		5A01CF871DB9F231002C2AEF /* LDLoginApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDLoginApi.h; sourceTree = "<group>"; };
-		5A01CF881DB9F231002C2AEF /* LDLoginApi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDLoginApi.m; sourceTree = "<group>"; };
-		5A01CF891DB9F231002C2AEF /* LDParameterFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDParameterFilter.h; sourceTree = "<group>"; };
-		5A01CF8A1DB9F231002C2AEF /* LDParameterFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDParameterFilter.m; sourceTree = "<group>"; };
-		5A01CF8B1DB9F231002C2AEF /* LDRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDRequestManager.h; sourceTree = "<group>"; };
-		5A01CF8C1DB9F231002C2AEF /* LDRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDRequestManager.m; sourceTree = "<group>"; };
-		5A01CF8D1DB9F231002C2AEF /* LDRequestSuccessFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LDRequestSuccessFilter.h; sourceTree = "<group>"; };
-		5A01CF8E1DB9F231002C2AEF /* LDRequestSuccessFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LDRequestSuccessFilter.m; sourceTree = "<group>"; };
 		5A01CF931DB9F253002C2AEF /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		5A01CF941DB9F253002C2AEF /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		5A532BDA1DEC007400E3449C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -116,14 +104,6 @@
 		5A01CF861DB9F231002C2AEF /* LDNetwork */ = {
 			isa = PBXGroup;
 			children = (
-				5A01CF871DB9F231002C2AEF /* LDLoginApi.h */,
-				5A01CF881DB9F231002C2AEF /* LDLoginApi.m */,
-				5A01CF891DB9F231002C2AEF /* LDParameterFilter.h */,
-				5A01CF8A1DB9F231002C2AEF /* LDParameterFilter.m */,
-				5A01CF8B1DB9F231002C2AEF /* LDRequestManager.h */,
-				5A01CF8C1DB9F231002C2AEF /* LDRequestManager.m */,
-				5A01CF8D1DB9F231002C2AEF /* LDRequestSuccessFilter.h */,
-				5A01CF8E1DB9F231002C2AEF /* LDRequestSuccessFilter.m */,
 			);
 			path = LDNetwork;
 			sourceTree = "<group>";
@@ -438,12 +418,8 @@
 				6003F59E195388D20070C39A /* BLKAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* BLKViewController.m in Sources */,
 				5A01CF951DB9F253002C2AEF /* NSString+MD5.m in Sources */,
-				5A01CF921DB9F231002C2AEF /* LDRequestSuccessFilter.m in Sources */,
-				5A01CF8F1DB9F231002C2AEF /* LDLoginApi.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
-				5A01CF901DB9F231002C2AEF /* LDParameterFilter.m in Sources */,
 				5A6E627B1E10F81F00897797 /* CustomURLProtocol.m in Sources */,
-				5A01CF911DB9F231002C2AEF /* LDRequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
