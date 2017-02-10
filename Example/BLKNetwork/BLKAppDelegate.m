@@ -8,7 +8,8 @@
 
 #import "BLKAppDelegate.h"
 
-
+#import "BLKNetworkConfig.h"
+#import "LDRequestSuccessFilter.h"
 
 @implementation BLKAppDelegate
 
@@ -16,7 +17,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-
+    
+    [BLKNetworkConfig sharedConfig].requestSuccessFilter = [[LDRequestSuccessFilter alloc]init];
     return YES;
 }
 

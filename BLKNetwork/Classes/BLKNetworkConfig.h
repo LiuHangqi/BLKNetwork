@@ -54,19 +54,6 @@
 
 @end
 
-@protocol BLKRequestFaildFilterProtocol <NSObject>
-
-/**
- 请求服务器失败后，对request进行重新配置
- 
- @param request rquest
- 
- @return 请求是否成功
- */
-- (BOOL)filterFaildWithRequest:(BLKBaseRequest *)request;
-
-@end
-
 @interface BLKNetworkConfig : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
@@ -76,6 +63,8 @@
 + (instancetype)sharedConfig;
 
 @property (nonatomic, strong) NSURLSessionConfiguration *sessionConfiguration;
+
+@property (nonatomic, strong) AFSecurityPolicy *securityPolicy;
 
 /**
  重新配置url
@@ -93,10 +82,5 @@
  成功后重新配置request
  */
 @property (nonatomic, strong) id <BLKRequestSuccessFilterProtocol> requestSuccessFilter;
-
-/**
- 成功后重新配置request
- */
-@property (nonatomic, strong) id <BLKRequestFaildFilterProtocol> requestFaildFilter;
 
 @end

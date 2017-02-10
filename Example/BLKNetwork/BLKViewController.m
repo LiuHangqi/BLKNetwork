@@ -7,6 +7,7 @@
 //
 
 #import "BLKViewController.h"
+#import "LoginApi.h"
 
 
 
@@ -26,8 +27,14 @@
 
 - (IBAction)click:(id)sender {
     
-   ;
+    LoginApi *login = [[LoginApi alloc]init];
+    [login startWithCompletionBlockWithSuccess:^(__kindof BLKBaseRequest *request) {
     
+        NSLog(@"success:%@",request);
+    } failure:^(__kindof BLKBaseRequest *request) {
+        
+        NSLog(@"failure:%@",request.error);
+    }];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BLKNetwork'
-  s.version          = '1.0.1'
+  s.version          = '1.0.3'
   s.summary          = 'Network framework for blkee'
 
 # This description is used to generate tags and improve search results.

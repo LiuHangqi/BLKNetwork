@@ -10,7 +10,6 @@
 
 
 
-
 @protocol AFMultipartFormData;
 
 typedef NS_ENUM(NSUInteger, BLKRequestMethod) {
@@ -42,7 +41,7 @@ typedef NS_ENUM(NSUInteger, BLKRequestPriority) {
 };
 
 typedef void (^BLKConstructingBlock)(id<AFMultipartFormData> formData);
-typedef void (^BLKURLSessionTaskProgressBlock)(NSProgress *progress);
+//typedef void (^BLKURLSessionTaskProgressBlock)(NSProgress *progress);
 
 @class BLKBaseRequest;
 
@@ -53,31 +52,19 @@ typedef void (^BLKRequestCompletionBlock)(__kindof BLKBaseRequest *request);
 
 #pragma mark - Request and Response Information
 
-@property (nonatomic, strong, readonly) NSURLSessionTask *requestTask;
-
-@property (nonatomic, strong, readonly) NSURLRequest  *originalRequest;
-
-@property (nonatomic, strong, readonly) NSURLRequest *currentRequest;
-
-@property (nonatomic, strong, readonly) NSHTTPURLResponse *response;
-
-@property (nonatomic, assign, readonly) NSInteger responseStatusCode;
-
-@property (nonatomic, strong, readonly) NSDictionary *responseHeaders;
-
-@property (nonatomic, strong, readonly) NSData *responseData;
-
-@property (nonatomic, strong, readonly) NSString *responseString;
-
-@property (nonatomic, strong) id responseObject;
-
-@property (nonatomic, strong) id responseJSONObject;
-
+@property (nonatomic, strong) NSURLSessionTask *requestTask;
+@property (nonatomic, strong) NSURLRequest  *originalRequest;
+@property (nonatomic, strong) NSURLRequest *currentRequest;
+@property (nonatomic, strong) NSHTTPURLResponse *response;
+@property (nonatomic, assign) NSInteger responseStatusCode;
+@property (nonatomic, strong) NSDictionary *responseHeaders;
+@property (nonatomic, strong) NSData *responseData;
+@property (nonatomic, strong) NSString *responseString;
 @property (nonatomic, strong) NSError *error;
-
-@property (nonatomic, readonly, getter=isCancelled) BOOL cancelled;
-
-@property (nonatomic, readonly, getter=isExecuting) BOOL executiong;
+@property (nonatomic, strong) id responseObject;
+@property (nonatomic, strong) id responseJSONObject;
+@property (nonatomic, getter=isCancelled) BOOL cancelled;
+@property (nonatomic, getter=isExecuting) BOOL executiong;
 
 #pragma mark - RequestConfiguration
 
@@ -121,9 +108,11 @@ typedef void (^BLKRequestCompletionBlock)(__kindof BLKBaseRequest *request);
 
 - (BLKRequestMethod)requestMethod;
 
-- (NSDictionary*)httpHeaders;
+- (NSDictionary*)requestHeaderFieldValueDictionary;
 
-- (NSDictionary*)parameters;
+- (NSURLRequest *)buildCustomRequest;
+
+- (id)requestParameters;
 
 - (NSInteger)requestTimeoutInterval;
 
@@ -132,12 +121,5 @@ typedef void (^BLKRequestCompletionBlock)(__kindof BLKBaseRequest *request);
 - (BLKResponseSerializerType)responseSerializer;
 
 - (BLKRequestPriority)requestPriority;
-
-- (BLKConstructingBlock)constructionBlock;
-
-- (void)requestCompleteFilter;
-
-- (void)requestFaildFilter;
-
 
 @end

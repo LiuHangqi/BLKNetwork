@@ -10,5 +10,25 @@
 
 @implementation BLKNetworkConfig
 
++ (instancetype)sharedConfig {
+    
+    static id sharedConfig = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedConfig = [[self alloc]init];
+    });
+    
+    return sharedConfig;
+}
+
+- (instancetype)init {
+    
+    if (self = [super init]) {
+        
+        
+    }
+    
+    return self;
+}
 
 @end
