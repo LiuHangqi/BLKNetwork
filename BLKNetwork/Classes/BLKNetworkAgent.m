@@ -10,7 +10,7 @@
 #import "BLKNetworkConfig.h"
 #import <pthread/pthread.h>
 #import "BLKBaseRequest.h"
-#import "BLKNetworkPrivate.h"
+//#import "BLKNetworkPrivate.h"
 
 #if __has_include(<AFNetworking/AFNetworking.h>)
 #import <AFNetworking/AFNetworking.h>

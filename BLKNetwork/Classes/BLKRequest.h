@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BLKBaseRequest.h"
+#import "BLKNetworkConfig.h"
 
 @interface BLKRequest : BLKBaseRequest
 @end

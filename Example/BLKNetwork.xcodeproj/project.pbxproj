@@ -40,7 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0DA93AF664B617CDCDACFEF3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		5A01CF931DB9F253002C2AEF /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		5A01CF941DB9F253002C2AEF /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		5A4410001E2CC9EB0025F47C /* LoginApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginApi.h; sourceTree = "<group>"; };
@@ -202,7 +201,6 @@
 			isa = PBXGroup;
 			children = (
 				A93EC186717B80B21D42E9B4 /* BLKNetwork.podspec */,
-				0DA93AF664B617CDCDACFEF3 /* README.md */,
 				61788BDF016F12A8B19E66CB /* LICENSE */,
 			);
 			name = "Podspec Metadata";

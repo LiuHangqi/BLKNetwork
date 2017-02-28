@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-@class BLKBaseRequest;
+@class BLKRequest;
 @class AFSecurityPolicy;
 
 @protocol BLKUrlFilterProtocol <NSObject>
@@ -21,7 +21,7 @@
 
  @return 返回配置后的URL
  */
-- (NSString *)filterUrl:(NSString *)originUrl withRequest:(BLKBaseRequest *)request;
+- (NSString *)filterUrl:(NSString *)originUrl withRequest:(BLKRequest *)request;
 
 @end
 
@@ -36,7 +36,7 @@
 
  @return 返回配置后的parameters
  */
-- (NSDictionary *)filterParameter:(NSDictionary *)originParameter withRequest:(BLKBaseRequest *)request;
+- (NSDictionary *)filterParameter:(NSDictionary *)originParameter withRequest:(BLKRequest *)request;
 
 @end
 
@@ -50,7 +50,7 @@
 
  @return 请求是否成功
  */
-- (BOOL)filterSuccessWithRequest:(BLKBaseRequest *)request;
+- (BOOL)filterSuccessWithRequest:(BLKRequest *)request;
 
 @end
 
