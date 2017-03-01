@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+@class BLKRequest;
 
 
 @protocol AFMultipartFormData;
@@ -45,7 +45,7 @@ typedef void (^BLKConstructingBlock)(id<AFMultipartFormData> formData);
 
 @class BLKBaseRequest;
 
-typedef void (^BLKRequestCompletionBlock)(__kindof BLKBaseRequest *request);
+typedef void (^BLKRequestCompletionBlock)(__kindof BLKRequest *request);
 
 
 @interface BLKBaseRequest : NSObject

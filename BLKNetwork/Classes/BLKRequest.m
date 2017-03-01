@@ -5,7 +5,6 @@
 #import "BLKRequest.h"
 
 
-@implementation BLKRequest {
+@implementation BLKRequest
 
-}
 @end
