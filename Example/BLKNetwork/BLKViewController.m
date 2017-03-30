@@ -28,13 +28,12 @@
 - (IBAction)click:(id)sender {
     
     LoginApi *login = [[LoginApi alloc]init];
-    [login startWithCompletionBlockWithSuccess:^(__kindof BLKBaseRequest *request) {
-    
-        NSLog(@"success:%@",request);
-    } failure:^(__kindof BLKBaseRequest *request) {
+    [login startWithCompletionBlockWithSuccess:^(__kindof BLKRequest *request) {
         
-        NSLog(@"failure:%@",request.error);
+    } failure:^(__kindof BLKRequest *request) {
+        
     }];
+   
 }
 
 - (void)didReceiveMemoryWarning
