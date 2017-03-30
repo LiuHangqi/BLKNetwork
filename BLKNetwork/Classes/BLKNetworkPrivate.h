@@ -11,7 +11,7 @@
 
 @interface BLKBaseRequest (Setter)
 
-@property (nonatomic, strong, readwrite) NSURLSessionTask *requestTask;
+@property (nonatomic, strong, readwrite) NSURLSessionTask *_Nullable requestTask;
 @property (nonatomic, strong, readwrite, nullable) NSData *responseData;
 @property (nonatomic, strong, readwrite, nullable) id responseJSONObject;
 @property (nonatomic, strong, readwrite, nullable) id responseObject;
