@@ -352,10 +352,10 @@
     
     if (block) {
         
-        request = [requestSerializer multipartFormRequestWithMethod:method URLString:urlString parameters:parameters constructingBodyWithBlock:block error:&error];
+        request = [requestSerializer multipartFormRequestWithMethod:method URLString:urlString parameters:parameters constructingBodyWithBlock:block error:error];
     }else {
         
-        request = [requestSerializer requestWithMethod:method URLString:urlString parameters:parameters error:&error];
+        request = [requestSerializer requestWithMethod:method URLString:urlString parameters:parameters error:error];
     }
     
     __block NSURLSessionDataTask *dataTask = nil;
