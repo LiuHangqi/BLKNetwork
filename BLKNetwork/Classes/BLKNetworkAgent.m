@@ -138,7 +138,7 @@
     return requestSerializer;
 }
 
-- (NSURLSessionTask *)sessionTaskForRequest:(BLKBaseRequest *)request error:(NSError * _Nullable __autoreleasing *)error {
+- (NSURLSessionTask *)sessionTaskForRequest:(__kindof BLKBaseRequest *)request error:(NSError * _Nullable __autoreleasing *)error {
     
     BLKRequestMethod method = [request requestMethod];
     NSString *url = [self buildRequestUrl:request];
@@ -170,7 +170,7 @@
     }
 }
 
-- (void)addRequest:(BLKBaseRequest *)request {
+- (void)addRequest:(__kindof BLKBaseRequest *)request {
     
     NSParameterAssert(request != nil);
     NSError * __autoreleasing requestSerializationError = nil;
@@ -216,7 +216,7 @@
     [request.requestTask resume];
 }
 
-- (void)cancelRequest:(BLKBaseRequest *)request {
+- (void)cancelRequest:(__kindof BLKBaseRequest *)request {
     
     NSParameterAssert(request != nil);
     [request.requestTask cancel];
@@ -297,7 +297,7 @@
     }
 }
 
-- (void)requestDidSuccessWithRequest:(BLKBaseRequest *)request {
+- (void)requestDidSuccessWithRequest:(__kindof BLKBaseRequest *)request {
    
    if (_config.requestSuccessFilter) {
         
@@ -323,7 +323,7 @@
     });
 }
 
-- (void)requestDidFaildWithRequest:(BLKBaseRequest *)request error:(NSError *)error {
+- (void)requestDidFaildWithRequest:(__kindof BLKBaseRequest *)request error:(NSError *)error {
     
     request.error = error;
     @autoreleasepool {
@@ -377,14 +377,14 @@
 }
 
 #pragma mark - 
-- (void)addRequestToRecord:(BLKBaseRequest *)request {
+- (void)addRequestToRecord:(__kindof BLKBaseRequest *)request {
     
     Lock();
     _requestsRecord[@(request.requestTask.taskIdentifier)] = request;
     Unlock();
 }
 
-- (void)removeRequestFromRecord:(BLKBaseRequest *)request {
+- (void)removeRequestFromRecord:(__kindof BLKBaseRequest *)request {
     
     Lock();
     _requestsRecord[@(request.requestTask.taskIdentifier)] = nil;

@@ -19,9 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedAgent;
 
-- (void)addRequest:(BLKBaseRequest *)request;
+- (void)addRequest:(__kindof BLKBaseRequest *)request;
 
-- (void)cancelRequest:(BLKBaseRequest *)request;
+- (void)cancelRequest:(__kindof BLKBaseRequest *)request;
 
 - (void)cancelAllRequest;
 
